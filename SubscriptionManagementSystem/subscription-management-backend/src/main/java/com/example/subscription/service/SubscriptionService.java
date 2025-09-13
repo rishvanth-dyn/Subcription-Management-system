@@ -1,19 +1,17 @@
 package com.example.subscription.service;
 
-import com.example.subscription.dto.*;
-import com.example.subscription.entity.Subscription;
+import com.example.subscription.dto.SubscriptionRequestDto;
 
 import java.util.List;
 
 public interface SubscriptionService {
-    SubscriptionResponseDto subscribe(SubscriptionRequestDto request);
-    SubscriptionResponseDto getById(Long id);
-    List<SubscriptionResponseDto> getByUser(Long userId);
-    SubscriptionResponseDto changePlan(Long subscriptionId, ChangePlanRequestDto dto);
-    SubscriptionResponseDto cancel(Long subscriptionId);
+    void subscribe(SubscriptionRequestDto request);
 
-    // Used in UserController
-    List<Subscription> getUserSubscriptions(Long userId);
+    String getSummaryById(Long id);
+
+    List<String> getSummariesByUser(Long userId);
+
+    void changePlan(Long id, SubscriptionRequestDto request);
+
+    void cancel(Long id);
 }
-
-
