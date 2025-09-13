@@ -1,50 +1,42 @@
-package com.example.subscription.dto;
+package com.example.subscription.controller;
 
-import jakarta.validation.constraints.NotNull;
+import com.example.subscription.dto.SubscriptionRequestDto;
+import com.example.subscription.service.SubscriptionService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
-/**
- * DTO used when creating a new subscription request.
- * This is the data the client sends in the request body.
- */
-public class SubscriptionRequestDto {
+@RestController
+@RequestMapping("/api/subscriptions")
+public class SubscriptionController {
 
-    @NotNull(message = "User ID is required")
-    private Long userId;
+    private final SubscriptionService subscriptionService;
 
-    @NotNull(message = "Plan ID is required")
-    private Long planId;
-
-    private Long discountId;   // optional field
-    private boolean autoRenew = true; // defaults to true
-
-    // -------- Getters and Setters --------
-    public Long getUserId() {
-        return userId;
-    }
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public SubscriptionController(SubscriptionService subscriptionService) {
+        this.subscriptionService = subscriptionService;
     }
 
-    public Long getPlanId() {
-        return planId;
-    }
-    public void setPlanId(Long planId) {
-        this.planId = planId;
-    }
-
-    public Long getDiscountId() {
-        return discountId;
-    }
-    public void setDiscountId(Long discountId) {
-        this.discountId = discountId;
+    @PostMapping
+    public ResponseEntity<String> createSubscription(@Valid @RequestBody SubscriptionRequestDto request) {
+        subscriptionService.subscribe(request);
+        return ResponseEntity.ok("Subscription created");
     }
 
-    public boolean isAutoRenew() {
-        return autoRenew;
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getSubscription(@PathVariable Long id) {
+        String info = subscriptionService.getSummaryById(id);
+        return ResponseEntity.ok(info);
     }
-    public void setAutoRenew(boolean autoRenew) {
-        this.autoRenew = autoRenew;
+
+    @PutMapping("/{id}/change-plan")
+    public ResponseEntity<String> changePlan(@PathVariable Long id, @Valid @RequestBody SubscriptionRequestDto request) {
+        subscriptionService.changePlan(id, request);
+        return ResponseEntity.ok("Plan changed");
+    }
+
+    @PostMapping("/{id}/cancel")
+    public ResponseEntity<String> cancelSubscription(@PathVariable Long id) {
+        subscriptionService.cancel(id);
+        return ResponseEntity.ok("Subscription cancelled");
     }
 }
-
-
