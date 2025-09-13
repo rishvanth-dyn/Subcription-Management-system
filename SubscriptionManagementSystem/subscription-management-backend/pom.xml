@@ -44,11 +44,11 @@
         </dependency>
 
         <!-- MySQL (optional, if you want MySQL instead of H2) -->
-        <dependency>
+<!--         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
-        </dependency>
+        </dependency> -->
 
         <!-- PostgreSQL (optional, if you want Postgres instead of MySQL) -->
         <dependency>
@@ -112,3 +112,4 @@
         </plugins>
     </build>
 </project>
+
