@@ -7,8 +7,8 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>SubSmart</h3>
-            <p>Smart subscription management for modern businesses and users.</p>
+            <h3>TelOptima</h3>
+            <p>Telecom subscription management for modern businesses and users.</p>
             <div className="social-icons">
               <a href="#"><i className="fab fa-facebook-f"></i></a>
               <a href="#"><i className="fab fa-twitter"></i></a>
