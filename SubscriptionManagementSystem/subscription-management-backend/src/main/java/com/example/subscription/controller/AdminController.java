@@ -1,8 +1,11 @@
 package com.example.subscription.controller;
 
-import com.example.subscription.dto.*;
 import com.example.subscription.entity.*;
-import com.example.subscription.service.*;
+import com.example.subscription.service.PlanService;
+import com.example.subscription.service.SubscriptionService;
+import com.example.subscription.service.UserService;
+import com.example.subscription.service.DiscountService;
+
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +31,6 @@ public class AdminController {
     }
 
     // --- User Management ---
-
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
@@ -48,10 +50,9 @@ public class AdminController {
     }
 
     // --- Plan Management ---
-
     @PostMapping("/plans")
     public ResponseEntity<Plan> createPlan(@Valid @RequestBody Plan plan) {
-        return ResponseEntity.ok(planService.createPlan(plan)); 
+        return ResponseEntity.ok(planService.createPlan(plan));
     }
 
     @GetMapping("/plans")
@@ -71,7 +72,6 @@ public class AdminController {
     }
 
     // --- Subscription Management ---
-
     @GetMapping("/subscriptions")
     public ResponseEntity<List<Subscription>> getAllSubscriptions() {
         return ResponseEntity.ok(subscriptionService.getAllSubscriptions());
@@ -84,7 +84,6 @@ public class AdminController {
     }
 
     // --- Discount Management ---
-
     @PostMapping("/discounts")
     public ResponseEntity<Discount> createDiscount(@Valid @RequestBody Discount discount) {
         return ResponseEntity.ok(discountService.createDiscount(discount));
@@ -105,7 +104,4 @@ public class AdminController {
         discountService.deleteDiscount(id);
         return ResponseEntity.noContent().build();
     }
-
 }
-
-
