@@ -16,7 +16,7 @@ const Header = () => {
       <div className="container header-content">
         <Link to="/" className="logo">
           <i className="fas fa-money-check-alt"></i>
-          <span>SubSmart</span>
+          <span>TelOptima</span>
         </Link>
 
         <nav className="nav">
