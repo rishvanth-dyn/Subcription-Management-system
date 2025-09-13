@@ -13,7 +13,7 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Reference to your real User entity
+    // Link to your real User entity
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private User user;
@@ -51,15 +51,96 @@ public class Subscription {
     }
 
     // ---------------- Getters & Setters ----------------
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    public Plan getPlan() { return plan; }
-    public void setPlan(Plan plan) { this.plan = plan; }
+    public Plan getPlan() {
+        return plan;
+    }
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
 
-    public Discount ge
+    public Discount getDiscount() {
+        return discount;
+    }
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
 
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public SubscriptionStatus getStatus() {
+        return status;
+    }
+    public void setStatus(SubscriptionStatus status) {
+        this.status = status;
+    }
+
+    public boolean isAutoRenew() {
+        return autoRenew;
+    }
+    public void setAutoRenew(boolean autoRenew) {
+        this.autoRenew = autoRenew;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getUsedQuota() {
+        return usedQuota;
+    }
+    public void setUsedQuota(Integer usedQuota) {
+        this.usedQuota = usedQuota;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    // ---------------- Enum inside ----------------
+    public enum SubscriptionStatus {
+        PENDING,
+        ACTIVE,
+        CANCELLED,
+        EXPIRED,
+        SUSPENDED
+    }
+}
