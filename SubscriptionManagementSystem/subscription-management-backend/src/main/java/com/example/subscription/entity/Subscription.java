@@ -136,11 +136,13 @@ public class Subscription {
     }
 
     // ---------------- Enum inside ----------------
-    public enum SubscriptionStatus {
-        PENDING,
+    public enum SubscriptionStatus { //only 2 listed in the excel sheet
+        // PENDING,
         ACTIVE,
-        CANCELLED,
-        EXPIRED,
-        SUSPENDED
+        PAUSED 
+        // CANCELLED,
+        // EXPIRED,
+        // SUSPENDED
     }
 }
+
